@@ -8,8 +8,8 @@ class Publisher(models.Model):
         return self.publisher_name
 
 class ComicTitle(models.Model):
-    comic_title = models.CharField(max_length = 150)
-    Publisher = models.ForeignKey(Publisher, on_delete = models.CASCADE)
+    comic_title = models.CharField(max_length = 75)
+    publisher = models.ForeignKey(Publisher, on_delete = models.CASCADE)
     reservations = models.IntegerField(default = 0)
 
     def __str__(self):
