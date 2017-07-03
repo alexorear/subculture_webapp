@@ -10,7 +10,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello World!")
+    return render(request, 'pullhold/index.html')
 
 class UserFormView(View):
     form_class = UserForm
@@ -33,3 +33,13 @@ class UserFormView(View):
             password = form.cleaned_data['password']
             user.set_password(password) #processes and stores password with proper hash
             user.save()
+
+            #returns User objects if credentials are correct
+            user = authenticate(username = username, password = password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('pullhold:index')
+
+        return render(request, self.template_name, {'form': form})
