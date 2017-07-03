@@ -4,9 +4,17 @@
 
 <h2>Sign up</h2>
 <form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
+  <div class="form-group">
+    {% csrf_token %}
+    <div class="form-control">
+      {{ form.as_p }}
+    </div>
+  </div>
+  <p class="error_message">{{ error }}</p>
   <button type="submit">Sign up</button>
 </form>
+
+<br/>
+<p>Already have an pull and hold account set up? <a href="#">Log-in here</a>
 
 {% endblock %}

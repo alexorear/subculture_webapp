@@ -25,7 +25,7 @@ class UserFormView(View):
     def post(self, request):
         form = self.form_class(request.POST) # passes user input into form validation
 
-        if form.is_valid():
+        if form.is_valid() and form.data['password'] == form.data['password_confirm']:
             user = form.save(commit = False)
 
             #Clean/Normalize the databases
@@ -42,4 +42,4 @@ class UserFormView(View):
                     login(request, user)
                     return redirect('pullhold:index')
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form , 'error': "Passwords DO NOT match!"})

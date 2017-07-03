@@ -1,0 +1,13 @@
+body {
+  background-color: #4caf50;
+}
+
+.container {
+  background-color: white;
+  min-height: 600px;
+}
+
+.error_message{
+  color: red;
+  font-weight: bold;
+}
