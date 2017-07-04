@@ -13,12 +13,15 @@ def index(request):
     if request.user.is_authenticated:
         username = request.user.username
         greeting = "Welcome {0}!" .format(username)
+    elif request.session.get('logged_out') == True:
+        greeting = "You are successfully logged out."
     else:
         greeting = ""
     return render(request, 'pullhold/index.html', {'greeting': greeting})
 
 def user_logout(request):
     logout(request)
+    request.session['logged_out'] = True
     return redirect('pullhold:index')
 
 
