@@ -21,7 +21,7 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="{% url 'pullhold:index' %}">Pull &amp; Hold</a>
-        <a class="nav-item nav-link" href="#">Sign-In</a>
+        <a class="nav-item nav-link" href="{% url 'pullhold:login'%}">Sign-In</a>
         <a class="nav-item nav-link" href="{% url 'pullhold:register' %}">Register</a>
         <a class="nav-item nav-link" href="#">Log-Out</a>
       </div>

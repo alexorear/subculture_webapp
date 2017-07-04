@@ -12,6 +12,25 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'pullhold/index.html')
 
+class UserSignIn(View):
+
+    def get(self, request):
+        return render(request, 'pullhold/login.html')
+
+    def post(self, request):
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username = username, password = password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('pullhold:index')
+
+        else:
+            error = "Invalid Username or Password"
+            return render(request, 'pullhold/login.html', {'error': error})
+
 class UserFormView(View):
     form_class = UserForm
     template_name = 'pullhold/registration.html'
