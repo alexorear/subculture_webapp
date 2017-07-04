@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
+from .models import ComicTitle
 from .forms import UserForm
 
 # Create your views here.
@@ -14,6 +15,14 @@ def index(request):
         greeting = ""
     return render(request, 'pullhold/index.html', {'greeting': greeting})
 
+
+class PullHoldView(View):
+    def get(self, request):
+        comic_list = ComicTitle.objects.all()
+        return render(request, 'pullhold/pullhold.html', {'comic_list': comic_list })
+
+    def post(self, request):
+        pass
 
 def user_logout(request):
     logout(request)

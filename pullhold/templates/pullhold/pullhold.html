@@ -1,0 +1,13 @@
+{% extends 'pullhold/base.html' %}
+
+{% block content %}
+
+<h2>Pull Hold</h2>
+
+<ul>
+  {% for comic in comic_list|dictsort:"comic_title" %}
+    <li>{{ comic.comic_title }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
