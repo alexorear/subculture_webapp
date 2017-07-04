@@ -14,6 +14,7 @@ def index(request):
         greeting = ""
     return render(request, 'pullhold/index.html', {'greeting': greeting})
 
+
 def user_logout(request):
     logout(request)
     request.session['logged_out'] = True

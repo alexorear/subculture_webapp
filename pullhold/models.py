@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Publisher(models.Model):
@@ -14,3 +15,7 @@ class ComicTitle(models.Model):
 
     def __str__(self):
         return self.comic_title
+
+class PullHold(models.Model):
+    user = models.ForeignKey(User, related_name="reading")
+    comic = models.ForeignKey(ComicTitle, related_name="likes")

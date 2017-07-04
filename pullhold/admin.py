@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Publisher, ComicTitle
+from .models import Publisher, ComicTitle, PullHold
+
 
 # Register your models here.
 class ComicTitleAdmin(admin.ModelAdmin):
@@ -8,4 +9,5 @@ class ComicTitleAdmin(admin.ModelAdmin):
     search_fields = ['comic_title']
 
 admin.site.register(Publisher)
+admin.site.register(PullHold)
 admin.site.register(ComicTitle, ComicTitleAdmin)
