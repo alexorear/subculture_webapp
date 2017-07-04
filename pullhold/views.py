@@ -10,7 +10,12 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return render(request, 'pullhold/index.html')
+    if request.user.is_authenticated:
+        username = request.user.username
+        greeting = "Welcome {0}!" .format(username)
+    else:
+        greeting = ""
+    return render(request, 'pullhold/index.html', {'greeting': greeting})
 
 def user_logout(request):
     logout(request)
