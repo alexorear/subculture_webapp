@@ -11,3 +11,10 @@ body {
   color: red;
   font-weight: bold;
 }
+
+.jumbotron{
+  margin: -25px -15px 0px -15px;
+  background-image: url("images/banner.jpg");
+  background-size: cover;
+  background-position: center;
+}
