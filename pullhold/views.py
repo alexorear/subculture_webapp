@@ -6,17 +6,20 @@ from .forms import UserForm
 
 # Create your views here.
 def index(request):
-    if request.user.is_authenticated:
-        username = request.user.username
-        greeting = "Welcome {0}!" .format(username)
-    elif request.session.get('logged_out') == True:
-        greeting = "You are successfully logged out."
-    else:
-        greeting = ""
-    return render(request, 'pullhold/index.html', {'greeting': greeting})
+        return render(request, 'pullhold/index.html')
 
 
 class PullHoldView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            username = request.user.username
+            greeting = "Welcome {0}!" .format(username)
+            return render(request, 'pullhold/pullhold.html', {'greeting': greeting})
+        else:
+            return redirect('pullhold:login')
+
+
+class PullHoldAddView(View):
     def get(self, request):
 
         if request.user.is_authenticated:
@@ -26,13 +29,13 @@ class PullHoldView(View):
             image = ComicTitle.objects.filter(publisher = 2)
             dc_comics = ComicTitle.objects.filter(publisher = 3)
 
-            return render(request, 'pullhold/pullhold.html', {'publishers': publishers,
+            return render(request, 'pullhold/pulladd.html', {'publishers': publishers,
             'marvel': marvel, 'image':image, 'dc_comics': dc_comics})
 
         else:
             return redirect('pullhold:login')
 
-    def post(self, request):
+    def post(self, rquest):
         pass
 
 def user_logout(request):

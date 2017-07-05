@@ -1,0 +1,37 @@
+{% extends 'pullhold/base.html' %}
+
+{% block content %}
+
+<h2>Select Titles To Add to Pull &amp; Hold</h2>
+<br/><br/>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Marvel</h3>
+      <ul>
+        {% for comic in marvel|dictsort:"comic_title" %}
+          <li>{{ comic.comic_title }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-4">
+      <h3>DC Comics</h3>
+      <ul>
+        {% for comic in dc_comics|dictsort:"comic_title" %}
+          <li>{{ comic.comic_title }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-4">
+      <h3>Image</h3>
+      <ul>
+        {% for comic in image|dictsort:"comic_title" %}
+          <li>{{ comic.comic_title }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}
