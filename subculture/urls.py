@@ -1,11 +1,13 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+import pullhold.views as views
 
 
 urlpatterns = [
+    url(r'^$', views.index, name='home'),
     url(r'^pullhold/', include('pullhold.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='pullhold/index.html'),
-        name='home'),
+    # url(r'^$', TemplateView.as_view(template_name='pullhold/index.html'),
+    #     name='home'),
 ]

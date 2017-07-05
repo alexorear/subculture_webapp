@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
-from .models import ComicTitle
+from .models import ComicTitle, Publisher
 from .forms import UserForm
 
 # Create your views here.
@@ -22,13 +22,13 @@ class PullHoldView(View):
         image = 2
         dc = 3
 
-        comic_list = ComicTitle.objects.all()
-        marvel_list = ComicTitle.objects.filter(publisher = 1)
-        image_list = ComicTitle.objects.filter(publisher = 2)
-        dc_list = ComicTitle.objects.filter(publisher = 3)
+        publishers = Publisher.objects.all()
+        marvel = ComicTitle.objects.filter(publisher = 1)
+        image = ComicTitle.objects.filter(publisher = 2)
+        dc_comics = ComicTitle.objects.filter(publisher = 3)
 
-        return render(request, 'pullhold/pullhold.html', {'comic_list': comic_list,
-        'marvel_list': marvel_list, 'image_list':image_list, 'dc_list': dc_list })
+        return render(request, 'pullhold/pullhold.html', {'publishers': publishers,
+        'marvel': marvel, 'image':image, 'dc_comics': dc_comics})
 
     def post(self, request):
         pass
@@ -36,7 +36,7 @@ class PullHoldView(View):
 def user_logout(request):
     logout(request)
     request.session['logged_out'] = True
-    return redirect('pullhold:index')
+    return redirect('home')
 
 
 class UserSignIn(View):
