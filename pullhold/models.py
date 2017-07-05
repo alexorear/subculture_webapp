@@ -23,7 +23,7 @@ class ComicTitle(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     bio = models.TextField(max_length = 500, blank = True)
-    comics = models.ManyToManyField(ComicTitle, related_name="pullhold_list")
+    comics = models.ManyToManyField(ComicTitle, related_name="pullhold_list",blank = True)
 
     #methods to automatically create a UserProfile when a user login is created
     @receiver(post_save, sender=User)
