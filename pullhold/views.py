@@ -18,8 +18,17 @@ def index(request):
 
 class PullHoldView(View):
     def get(self, request):
+        marvel = 1
+        image = 2
+        dc = 3
+
         comic_list = ComicTitle.objects.all()
-        return render(request, 'pullhold/pullhold.html', {'comic_list': comic_list })
+        marvel_list = ComicTitle.objects.filter(publisher = 1)
+        image_list = ComicTitle.objects.filter(publisher = 2)
+        dc_list = ComicTitle.objects.filter(publisher = 3)
+
+        return render(request, 'pullhold/pullhold.html', {'comic_list': comic_list,
+        'marvel_list': marvel_list, 'image_list':image_list, 'dc_list': dc_list })
 
     def post(self, request):
         pass
