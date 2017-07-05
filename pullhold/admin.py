@@ -8,6 +8,9 @@ class ComicTitleAdmin(admin.ModelAdmin):
     list_filter = ['publisher']
     search_fields = ['comic_title']
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['user']
+
 admin.site.register(Publisher)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(ComicTitle, ComicTitleAdmin)
