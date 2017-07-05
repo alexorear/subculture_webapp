@@ -1,5 +1,5 @@
 body {
-  background-color: #4caf50;
+  background-color: #d4d6d4;
 }
 
 .container {
@@ -12,9 +12,24 @@ body {
   font-weight: bold;
 }
 
+.lead{
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: right;
+  text-shadow: 3px 3px 4px #000000;
+  margin-right: 15px;
+  position:absolute;
+      bottom:0;
+      right:0;
+}
+
 .jumbotron{
   margin: -25px -15px 0px -15px;
+  min-height: 300px;
+  padding: auto;
+  position:relative;
   background-image: url("images/banner.jpg");
   background-size: cover;
-  background-position: center;
+
 }
