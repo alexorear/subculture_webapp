@@ -18,17 +18,19 @@ def index(request):
 
 class PullHoldView(View):
     def get(self, request):
-        marvel = 1
-        image = 2
-        dc = 3
 
-        publishers = Publisher.objects.all()
-        marvel = ComicTitle.objects.filter(publisher = 1)
-        image = ComicTitle.objects.filter(publisher = 2)
-        dc_comics = ComicTitle.objects.filter(publisher = 3)
+        if request.user.is_authenticated:
+            #filter is currently filtering publishers by publisher.id
+            publishers = Publisher.objects.all()
+            marvel = ComicTitle.objects.filter(publisher = 1)
+            image = ComicTitle.objects.filter(publisher = 2)
+            dc_comics = ComicTitle.objects.filter(publisher = 3)
 
-        return render(request, 'pullhold/pullhold.html', {'publishers': publishers,
-        'marvel': marvel, 'image':image, 'dc_comics': dc_comics})
+            return render(request, 'pullhold/pullhold.html', {'publishers': publishers,
+            'marvel': marvel, 'image':image, 'dc_comics': dc_comics})
+
+        else:
+            return redirect('pullhold:login')
 
     def post(self, request):
         pass
