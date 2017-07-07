@@ -1,0 +1,11 @@
+{% extends 'pullhold/base.html' %}
+
+{% block content %}
+
+<ul>
+  {% for comic in holdlist %}
+    <li>{{ comic }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

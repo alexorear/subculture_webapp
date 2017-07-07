@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
-from .models import ComicTitle, Publisher
+from .models import ComicTitle, Publisher, UserProfile
 from .forms import UserForm
 
 # Create your views here.
@@ -35,8 +35,16 @@ class PullHoldAddView(View):
         else:
             return redirect('pullhold:login')
 
-    def post(self, rquest):
-        pass
+    def post(self, request):
+        user = request.user
+        id_list = request.POST.getlist('comic')
+
+        for comic in id_list:
+            user.userprofile.comics.add(comic)
+        user.save()
+
+        holdlist = user.userprofile.comics.all().order_by('comic_title')
+        return render(request, 'pullhold/holdlist.html', {'holdlist': holdlist})
 
 def user_logout(request):
     logout(request)
