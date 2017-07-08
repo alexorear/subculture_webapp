@@ -39,12 +39,13 @@ class PullHoldAddView(View):
         user = request.user
         id_list = request.POST.getlist('comic')
 
-        for comic in id_list:
-            user.userprofile.comics.add(comic)
-        user.save()
+        for i in id_list:
+            if not user.userprofile.comics.filter(id = i).exists():
+                user.userprofile.comics.add(id)
+            user.save()
 
         holdlist = user.userprofile.comics.all().order_by('comic_title')
-        return redirect('holdlist: holdlist')
+        return redirect('pullhold:holdlist')
 
 class HoldListView(View):
     def get(self, request):
