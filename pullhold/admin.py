@@ -12,6 +12,7 @@ class ComicTitleAdmin(admin.ModelAdmin):
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ['user']
+    filter_horizontal = ['comics',]
 
 admin.site.register(Publisher)
 admin.site.register(UserProfile, UserProfileAdmin)
