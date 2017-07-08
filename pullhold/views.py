@@ -9,7 +9,7 @@ def index(request):
         return render(request, 'pullhold/index.html')
 
 
-class PullHoldView(View):
+class PullHoldMenuView(View):
     def get(self, request):
         if request.user.is_authenticated:
             username = request.user.username
@@ -44,7 +44,18 @@ class PullHoldAddView(View):
         user.save()
 
         holdlist = user.userprofile.comics.all().order_by('comic_title')
-        return render(request, 'pullhold/holdlist.html', {'holdlist': holdlist})
+        return redirect('holdlist: holdlist')
+
+class HoldListView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            user = request.user
+            holdlist = user.userprofile.comics.all().order_by('comic_title')
+            return render(request, 'pullhold/holdlist.html', {'holdlist': holdlist})
+
+        else:
+            return redirect('pullhold:login')
+
 
 def user_logout(request):
     logout(request)
