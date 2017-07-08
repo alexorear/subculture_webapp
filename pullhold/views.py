@@ -24,13 +24,12 @@ class PullHoldAddView(View):
 
         if request.user.is_authenticated:
             #filter is currently filtering publishers by publisher.id
-            publishers = Publisher.objects.all()
             marvel = ComicTitle.objects.filter(publisher__publisher_name="Marvel")
             image = ComicTitle.objects.filter(publisher__publisher_name="Image")
             dc_comics = ComicTitle.objects.filter(publisher__publisher_name="DC Comics")
 
-            return render(request, 'pullhold/pulladd.html', {'publishers': publishers,
-            'marvel': marvel, 'image':image, 'dc_comics': dc_comics})
+            return render(request, 'pullhold/pulladd.html', {'marvel': marvel,
+            'image':image, 'dc_comics': dc_comics})
 
         else:
             return redirect('pullhold:login')
@@ -39,9 +38,10 @@ class PullHoldAddView(View):
         user = request.user
         id_list = request.POST.getlist('comic')
 
+        #check to see if comic is in users holdlist, if not add it
         for i in id_list:
             if not user.userprofile.comics.filter(id = i).exists():
-                user.userprofile.comics.add(id)
+                user.userprofile.comics.add(i)
             user.save()
 
         holdlist = user.userprofile.comics.all().order_by('comic_title')
@@ -56,6 +56,9 @@ class HoldListView(View):
 
         else:
             return redirect('pullhold:login')
+
+    def post(self, request):
+        pass
 
 
 def user_logout(request):

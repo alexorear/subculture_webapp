@@ -2,10 +2,27 @@
 
 {% block content %}
 
-<ul>
-  {% for comic in holdlist %}
-    <li>{{ comic }}</li>
-  {% endfor %}
-</ul>
+<form method="post">
+  {% csrf_token %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Publisher</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+{% for comic in holdlist %}
+  <tr>
+    <td><label>{{ comic.comic_title }}</label></td>
+    <td>{{ comic.publisher.publisher_name }}</td>
+    <td><input type="checkbox" name="remove" value="comic.id"></td>
+  </tr>
+{% endfor %}
+</table>
+
+<input type="submit" value="Remove Titles"/>
+</form>
 
 {% endblock %}
