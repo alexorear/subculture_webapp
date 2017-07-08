@@ -2,6 +2,10 @@
 
 {% block content %}
 
+<h2>Current Pull &amp; Hold</h2>
+<p>Add titles to your pull list <a href="{% url 'pullhold:pulladd' %}">HERE</a></p>
+<br/>
+
 <form method="post">
   {% csrf_token %}
 
@@ -17,7 +21,7 @@
   <tr>
     <td><label>{{ comic.comic_title }}</label></td>
     <td>{{ comic.publisher.publisher_name }}</td>
-    <td><input type="checkbox" name="remove" value="comic.id"></td>
+    <td><input type="checkbox" name="remove" value="{{ comic.id }}"></td>
   </tr>
 {% endfor %}
 </table>

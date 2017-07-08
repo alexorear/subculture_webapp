@@ -36,10 +36,10 @@ class PullHoldAddView(View):
 
     def post(self, request):
         user = request.user
-        id_list = request.POST.getlist('comic')
+        add_list = request.POST.getlist('comic')
 
         #check to see if comic is in users holdlist, if not add it
-        for i in id_list:
+        for i in add_list:
             if not user.userprofile.comics.filter(id = i).exists():
                 user.userprofile.comics.add(i)
             user.save()
@@ -58,7 +58,17 @@ class HoldListView(View):
             return redirect('pullhold:login')
 
     def post(self, request):
-        pass
+        user = request.user
+        remove_list = request.POST.getlist('remove')
+
+        #remove comic is in users holdlist
+        for i in remove_list:
+            user.userprofile.comics.remove(i)
+        user.save()
+
+        holdlist = user.userprofile.comics.all().order_by('comic_title')
+        return render(request, 'pullhold/holdlist.html', {'holdlist': holdlist})
+
 
 
 def user_logout(request):

@@ -7,35 +7,35 @@
 
 <form method="post">
   {% csrf_token %}
-
+  
+  <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col">
       <h3>Marvel</h3>
-        {% for comic in marvel|dictsort:"comic_title" %}
-          <input type="checkbox" name="comic" value="{{ comic.id }}">
-          <label>{{ comic.comic_title }}</label>
-          <br/>
-        {% endfor %}
-      </div>
-
-    <div class="col-md-4">
+      {% for comic in marvel|dictsort:"comic_title" %}
+        <input type="checkbox" name="comic" value="{{ comic.id }}">
+        <label>{{ comic.comic_title }}</label>
+        <br/>
+      {% endfor %}
+    </div>
+    <div class="col">
       <h3>DC Comics</h3>
-        {% for comic in dc_comics|dictsort:"comic_title" %}
-          <input type="checkbox" name="comic" value="{{ comic.id }}">
-          <label>{{ comic.comic_title }}</label>
-          <br/>
-        {% endfor %}
+      {% for comic in dc_comics|dictsort:"comic_title" %}
+        <input type="checkbox" name="comic" value="{{ comic.id }}">
+        <label>{{ comic.comic_title }}</label>
+        <br/>
+      {% endfor %}
     </div>
-
-    <div class="col-md-4">
+    <div class="col">
       <h3>Image</h3>
-        {% for comic in image|dictsort:"comic_title" %}
-          <input type="checkbox" name="comic" value="{{ comic.id }}">
-          <label>{{ comic.comic_title }}</label>
-          <br/>
-        {% endfor %}
-      </div>
+      {% for comic in image|dictsort:"comic_title" %}
+        <input type="checkbox" name="comic" value="{{ comic.id }}">
+        <label>{{ comic.comic_title }}</label>
+        <br/>
+      {% endfor %}
     </div>
+  </div>
+</div>
 
   <input type="submit" value="Add titles"/>
 </form>
