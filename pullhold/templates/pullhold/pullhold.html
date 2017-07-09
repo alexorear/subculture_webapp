@@ -1,11 +1,45 @@
 {% extends 'pullhold/base.html' %}
 
 {% block content %}
+
+{% if request.user.is_superuser %}
+<h1>{{ greeting }}</h1>
+<br/><br/>
+<p><h3>Admin Panel</h3></p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Add New Comic Title</td>
+  <tr>
+  <tr>
+    <td>View Comics By Titles</td>
+  </tr>
+  <tr>
+    <td>View Customers</td>
+  </tr>
+</table>
+
+{% else %}
 <h1>{{ greeting }}</h1>
 <br/><br/>
 <h3>Manage Your Pull &amp; Hold List</h3>
-
-<p>Add titles to your pull list <a href="{% url 'pullhold:pulladd' %}">HERE</a></p>
-<p>View/Remove current comics in Pull &amp; Hold list <a href="{% url 'pullhold:holdlist' %}"</a>HERE</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Add titles to your pull list <a href="{% url 'pullhold:pulladd' %}">HERE</a></td>
+  <tr>
+  <tr>
+    <td>View/Remove current comics in Pull &amp; Hold list <a href="{% url 'pullhold:holdlist' %}">HERE</a></td>
+  </tr>
+</table>
+{% endif %}
 
 {% endblock %}

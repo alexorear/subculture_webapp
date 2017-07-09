@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-#needed for UserProfile class methods
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -16,6 +14,7 @@ class ComicTitle(models.Model):
     comic_title = models.CharField(max_length = 75)
     publisher = models.ForeignKey(Publisher, on_delete = models.CASCADE)
     reservations = models.IntegerField(default = 0)
+    readers = models.ManyToManyField('UserProfile', through='ComicReaders', blank = True)
 
     def __str__(self):
         return self.comic_title + ' - ' + self.publisher.publisher_name
@@ -23,10 +22,19 @@ class ComicTitle(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     bio = models.TextField(max_length = 500, blank = True)
-    comics = models.ManyToManyField(ComicTitle, related_name="pullhold_list",blank = True)
+    comics = models.ManyToManyField(ComicTitle, related_name="pullhold_list", through='ComicReaders', blank = True)
 
     def __str__(self):
         return self.user.username
+
+#this links comictitles and readers together so they can easily be viewed in admin panel
+class ComicReaders(models.Model):
+    ComicTitle = models.ForeignKey(ComicTitle)
+    UserProfile = models.ForeignKey(UserProfile)
+
+    class Meta:
+        db_table = 'pullhold_comictitle_readers'
+        auto_created = User
 
     #methods to automatically create a UserProfile when a user login is created
     @receiver(post_save, sender=User)

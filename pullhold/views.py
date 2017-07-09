@@ -8,6 +8,12 @@ from .forms import UserForm
 def index(request):
         return render(request, 'pullhold/index.html')
 
+# class AdminComicList(View):
+#     def get(self, request):
+#         comic_list = ComicTitle.objects.all()
+#
+#         return render(request, 'pullhold/admincomiclist.html', {'comic_list': comic_list})
+
 
 class PullHoldMenuView(View):
     def get(self, request):
