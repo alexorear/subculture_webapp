@@ -8,12 +8,6 @@ from .forms import UserForm
 def index(request):
         return render(request, 'pullhold/index.html')
 
-# class AdminComicList(View):
-#     def get(self, request):
-#         comic_list = ComicTitle.objects.all()
-#
-#         return render(request, 'pullhold/admincomiclist.html', {'comic_list': comic_list})
-
 
 class PullHoldMenuView(View):
     def get(self, request):
@@ -56,6 +50,7 @@ class PullHoldAddView(View):
         holdlist = user.userprofile.comics.all().order_by('comic_title')
         return redirect('pullhold:holdlist')
 
+
 class HoldListView(View):
     def get(self, request):
         if request.user.is_authenticated:
@@ -82,7 +77,6 @@ class HoldListView(View):
         return render(request, 'pullhold/holdlist.html', {'holdlist': holdlist})
 
 
-
 def user_logout(request):
     logout(request)
     request.session['logged_out'] = True
@@ -107,6 +101,7 @@ class UserSignIn(View):
         else:
             error = "Invalid Username or Password"
             return render(request, 'pullhold/login.html', {'error': error})
+
 
 class UserFormView(View):
     form_class = UserForm
