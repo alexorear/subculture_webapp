@@ -48,6 +48,9 @@ class PullHoldAddView(View):
         for i in add_list:
             if not user.userprofile.comics.filter(id = i).exists():
                 user.userprofile.comics.add(i)
+                comic = ComicTitle.objects.get(id = i)
+                comic.reservations +=1
+                comic.save()
             user.save()
 
         holdlist = user.userprofile.comics.all().order_by('comic_title')
@@ -70,6 +73,9 @@ class HoldListView(View):
         #remove comic is in users holdlist
         for i in remove_list:
             user.userprofile.comics.remove(i)
+            comic = ComicTitle.objects.get(id = i)
+            comic.reservations -= 1
+            comic.save()
         user.save()
 
         holdlist = user.userprofile.comics.all().order_by('comic_title')

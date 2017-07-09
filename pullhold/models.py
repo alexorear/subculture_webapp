@@ -19,6 +19,9 @@ class ComicTitle(models.Model):
     def __str__(self):
         return self.comic_title + ' - ' + self.publisher.publisher_name
 
+    def set_reservation(self):
+        self.reservations +=0
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     bio = models.TextField(max_length = 500, blank = True)
