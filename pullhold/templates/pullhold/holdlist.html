@@ -12,6 +12,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Cover</th>
       <th>Title</th>
       <th>Publisher</th>
       <th>Remove</th>
@@ -19,6 +20,7 @@
   </thead>
 {% for comic in holdlist %}
   <tr>
+    <td><img src="{{ comic.cover_art.url }}" height="204" width="137"/></td>
     <td><label>{{ comic.comic_title }}</label></td>
     <td>{{ comic.publisher.publisher_name }}</td>
     <td><input type="checkbox" name="remove" value="{{ comic.id }}"></td>

@@ -14,13 +14,12 @@ class ComicTitle(models.Model):
     comic_title = models.CharField(max_length = 75)
     publisher = models.ForeignKey(Publisher, on_delete = models.CASCADE)
     reservations = models.IntegerField(default = 0)
+    cover_art = models.FileField(blank = True)
     readers = models.ManyToManyField('UserProfile', through='ComicReaders', blank = True)
 
     def __str__(self):
         return self.comic_title + ' - ' + self.publisher.publisher_name
 
-    def set_reservation(self):
-        self.reservations +=0
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
