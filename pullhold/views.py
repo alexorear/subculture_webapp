@@ -4,9 +4,6 @@ from django.views.generic import View
 from .models import ComicTitle, Publisher, UserProfile
 from .forms import UserForm, ComicTitleForm
 
-from PIL import Image
-
-
 # Create your views here.
 def index(request):
         return render(request, 'pullhold/index.html')
@@ -98,13 +95,8 @@ class ComicTitleFormView(View):
         form = ComicTitleForm(request.POST, request.FILES)
 
         if form.is_valid():
-            comic = form.save(commit = False)
-            image = Image.open(request.FILES['cover_art'])
-            image.resize((137, 204), Image.ANTIALIAS)
-
-            comic.save()
-
-            return redirect('admin:index')
+            comic = form.save()
+            return redirect('pullhold:pulladd')
 
         return render(request, self.template_name, {'form': form})
 
