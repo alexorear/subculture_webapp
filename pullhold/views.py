@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from .models import ComicTitle, Publisher, UserProfile
-from .forms import UserForm
+from .forms import UserForm, ComicTitleForm
+
+from PIL import Image
+
 
 # Create your views here.
 def index(request):
@@ -81,6 +84,29 @@ def user_logout(request):
     logout(request)
     request.session['logged_out'] = True
     return redirect('home')
+
+
+class ComicTitleFormView(View):
+    form_class = ComicTitleForm
+    template_name = 'pullhold/newcomic.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = ComicTitleForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            comic = form.save(commit = False)
+            image = Image.open(request.FILES['cover_art'])
+            image.resize((137, 204), Image.ANTIALIAS)
+
+            comic.save()
+
+            return redirect('admin:index')
+
+        return render(request, self.template_name, {'form': form})
 
 
 class UserSignIn(View):

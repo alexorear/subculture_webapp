@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from PIL import Image
 
+from PIL import Image
 # Create your models here.
 class Publisher(models.Model):
     publisher_name = models.CharField(max_length = 30)
@@ -14,8 +16,9 @@ class ComicTitle(models.Model):
     comic_title = models.CharField(max_length = 75)
     publisher = models.ForeignKey(Publisher, on_delete = models.CASCADE)
     reservations = models.IntegerField(default = 0)
-    cover_art = models.FileField(blank = True)
+    cover_art = models.ImageField(blank = True)
     readers = models.ManyToManyField('UserProfile', through='ComicReaders', blank = True)
+
 
     def __str__(self):
         return self.comic_title + ' - ' + self.publisher.publisher_name

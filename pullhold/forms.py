@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import ComicTitle, Publisher
 from django import forms
 
 
@@ -13,3 +14,8 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
+
+class ComicTitleForm(forms.ModelForm):
+    class Meta:
+        model = ComicTitle
+        fields = ['comic_title', 'publisher', 'cover_art']
