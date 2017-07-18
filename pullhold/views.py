@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from .models import ComicTitle, Publisher, UserProfile
 from .forms import UserForm, ComicTitleForm
+from .comicvine import comicvine
 
 # Create your views here.
 def index(request):
@@ -83,22 +84,33 @@ def user_logout(request):
     return redirect('home')
 
 
-class ComicTitleFormView(View):
-    form_class = ComicTitleForm
-    template_name = 'pullhold/newcomic.html'
+class ComicTitleSearchView(View):
 
     def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
+        return render(request, 'pullhold/newcomicsearch.html', )
 
     def post(self, request):
-        form = ComicTitleForm(request.POST, request.FILES)
+        search_term = request.POST['comic_title']
+        api_results = comicvine(search_term)
 
-        if form.is_valid():
-            comic = form.save()
-            return redirect('pullhold:pulladd')
+        results = []
+        for i in api_results:
+            individual_title = [i['name']]
+            individual_title.append(i['image']['small_url'])
+            individual_title.append(i['publisher'])
+            individual_title.append(i['start_year'])
+            results.append(individual_title)
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, 'pullhold/newcomicresults.html', {'results': results})
+
+
+class AddNewComicTitleView(View):
+
+    def get(self, request):
+        return render(request, 'pullhold/newcomicsearch.html', )
+
+    def post(self, request):
+        return redirect('pullhold:pulladd')
 
 
 class UserSignIn(View):

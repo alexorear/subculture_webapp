@@ -1,0 +1,29 @@
+{% extends 'pullhold/base.html' %}
+
+{% block content %}
+
+<h2>Add Comic Title</h2>
+<br/>
+
+<form method="post" action="{% url 'pullhold:newcomicsearch' %}">
+  <div class="form-group">
+    {% csrf_token %}
+    <div class="form-control">
+      <div>
+        <p>Use the box below to search for a new comic title to add to the list of titles
+          for customers to add to their pull &amp hold list. This search looks for exact
+          title matches to don't forget punctuation. <em>(ex: the hyphen in Spider-Man or the
+          colon in Batman: Rebirth)</em></p>
+
+        <label>Search For Comic Title</label>
+        <input type="text" name="comic_title"/>
+      </div>
+  <p class="error_message">{{ error }}</p>
+  <button type="submit">Search For Title</button>
+</div>
+</form>
+
+<br/>
+<p>See all current comics in list <a href="/admin/pullhold/comictitle/">HERE</a>
+
+{% endblock %}

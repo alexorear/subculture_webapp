@@ -5,7 +5,8 @@ from . import views
 app_name = 'pullhold'
 urlpatterns = [
     # url(r'^$', views.index, name='index'),
-    url(r'^newcomic/$', views.ComicTitleFormView.as_view(), name='newcomic'),
+    url(r'^addtitle/$', views.AddNewComicTitleView.as_view(), name='addtitle'),
+    url(r'^newcomicsearch/$', views.ComicTitleSearchView.as_view(), name='newcomicsearch'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^$', views.PullHoldMenuView.as_view(), name='index'),
     url(r'^pulladd/$', views.PullHoldAddView.as_view(), name='pulladd'),

@@ -1,0 +1,35 @@
+{% extends 'pullhold/base.html' %}
+
+{% block content %}
+
+<h2>Select New Comic Title</h2>
+<br/><br/>
+
+<form method="post" action="{% url 'pullhold:addtitle' %}">
+  {% csrf_token %}
+
+  <div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Search Results:</h3>
+      <a href="{% url 'pullhold:newcomicsearch' %}">Start New Search</a>
+
+      <div class="row">
+        {% for result  in results %}
+          <div class="col-md comic_list text-center">
+            <img src="{{ result.1 }}" height="204" width="137"/><br/>
+            <p>
+              <b>{{ result.0 }}</b>
+            </br>
+              <em>{{ result.2.name }}</em>
+            </br>
+              {{ result.3 }}
+            </br>
+              <button name="new_title" type="submit" value="{{ result }}">Add Title</button>
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+</form>
+
+{% endblock %}

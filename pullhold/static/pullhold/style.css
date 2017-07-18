@@ -31,5 +31,13 @@ body {
   position:relative;
   background-image: url("images/banner.jpg");
   background-size: cover;
+}
 
+.comic_list{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.comic_search_select{
+  text-align: center;
 }
