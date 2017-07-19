@@ -41,3 +41,8 @@ body {
 .comic_search_select{
   text-align: center;
 }
+
+.store_hours_box{
+  text-align: center;
+  outline: #89e41f solid thick;
+}
