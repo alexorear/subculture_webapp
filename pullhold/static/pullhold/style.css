@@ -2,6 +2,13 @@ body {
   background-color: #d4d6d4;
 }
 
+footer{
+  text-align: center;
+  background-color: #70bf4e;
+  min-height: 30px;
+  padding-bottom: -10px;
+}
+
 .container {
   background-color: white;
   min-height: 600px;
@@ -39,10 +46,15 @@ body {
 }
 
 .comic_search_select{
-  text-align: center;
+    text-align: center;
 }
 
-.store_hours_box{
+.store_hours{
+  max-width: 350px;
+  margin: 15px 45px 15px 45px;
+  padding-top: 12px;
+  padding-bottom: 14px; 
   text-align: center;
-  outline: #89e41f solid thick;
+  border: #70bf4e solid;
+  border-radius: 25px;
 }
