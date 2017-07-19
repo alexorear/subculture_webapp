@@ -110,6 +110,14 @@ class AddNewComicTitleView(View):
         return render(request, 'pullhold/newcomicsearch.html', )
 
     def post(self, request):
+
+        new_comic = ComicTitle()
+
+        new_comic.comic_title = request.POST['comic_title']
+        new_comic.cover_art = request.POST['cover_art']
+        new_comic.publisher = Publisher.objects.get(publisher_name = request.POST['publisher'])
+        new_comic.save()
+
         return redirect('pullhold:pulladd')
 
 

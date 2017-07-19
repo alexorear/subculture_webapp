@@ -9,36 +9,43 @@
   {% csrf_token %}
 
   <div class="container">
-  <div class="row">
-    <div class="col">
+
       <h3>Marvel</h3>
+      <div class="row">
       {% for comic in marvel|dictsort:"comic_title" %}
-        <img src="{{ comic.cover_art.url }}" height="204" width="137"/><br/>
-        <input type="checkbox" name="comic" value="{{ comic.id }}">
-        <label>{{ comic.comic_title }}</label>
-        <br/>
+      <div class="col-md comic_list text-center">
+        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
+        <p>
+          <input type="checkbox" name="comic" value="{{ comic.id }}">
+          <b>{{ comic.comic_title }}</b>
+        </p>
+      </div>
       {% endfor %}
-    </div>
-    <div class="col">
+      </div>
+
       <h3>DC Comics</h3>
+      <div class="row">
       {% for comic in dc_comics|dictsort:"comic_title" %}
-        <img src="{{ comic.cover_art.url }}" height="204" width="137"/><br/>
+      <div class="col-md comic_list text-center">
+        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
         <input type="checkbox" name="comic" value="{{ comic.id }}">
-        <label>{{ comic.comic_title }}</label>
+        <b>{{ comic.comic_title }}</b>
         <br/>
+      </div>
       {% endfor %}
-    </div>
-    <div class="col">
+      </div>
+
       <h3>Image</h3>
+      <div class="row">
       {% for comic in image|dictsort:"comic_title" %}
-        <img src="{{ comic.cover_art.url }}" height="204" width="137"/><br/>
+      <div class="col-md comic_list text-center">
+        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
         <input type="checkbox" name="comic" value="{{ comic.id }}">
-        <label>{{ comic.comic_title }}</label>
+        <b>{{ comic.comic_title }}</b>
         <br/>
+      </div>
       {% endfor %}
-    </div>
-  </div>
-</div>
+      </div>
 
   <input type="submit" value="Add titles"/>
 </form>
