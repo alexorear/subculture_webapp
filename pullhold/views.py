@@ -6,15 +6,18 @@ from .forms import UserForm, ComicTitleForm
 from .comicvine import comicvine
 
 # Create your views here.
-def index(request):
-        return render(request, 'pullhold/index.html')
+class IndexView(View):
+    def get(self, request):
+        form = UserForm
+        return render(request, 'pullhold/index.html', {'form': form})
 
 
 class PullHoldMenuView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            username = request.user.username
-            greeting = "Welcome {0}!" .format(username)
+            first_name = request.user.first_name
+            last_name = request.user.last_name
+            greeting = "Welcome {0} {1}!" .format(first_name, last_name)
             return render(request, 'pullhold/pullhold.html', {'greeting': greeting})
         else:
             return redirect('pullhold:login')

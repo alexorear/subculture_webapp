@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^$', views.index, name='home'),
+    url(r'^$', views.IndexView.as_view(), name='home'),
     url(r'^pullhold/', include('pullhold.urls')),
     url(r'^admin/', admin.site.urls),
     # url(r'^$', TemplateView.as_view(template_name='pullhold/index.html'),

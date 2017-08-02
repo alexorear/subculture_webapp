@@ -1,17 +1,28 @@
 body {
-  background-color: #d4d6d4;
+  background-image: url("images/cb-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  /*background-color: #d4d6d4;*/
 }
 
 footer{
+  color: white;
   text-align: center;
   background-color: #70bf4e;
   min-height: 30px;
-  padding-bottom: -10px;
+  bottom: 0px;
+}
+
+footer a, a:hover{
+  color: white;
 }
 
 .container {
-  background-color: white;
-  min-height: 600px;
+  background-color: rgba(255,255,255,.75);
+  min-height: 650px;
+  border-left: solid black 1px;
+  border-right: solid black 1px;
 }
 
 .error_message{
@@ -49,12 +60,61 @@ footer{
     text-align: center;
 }
 
+.bg-faded {
+  background-color: #70bf4e;
+}
+
+.form-control {
+  max-width: 325px;
+}
+
+.modal-body a:hover {
+  color: blue;
+}
+
+.modal-header {
+  color: white;
+  background-color: #70bf4e;
+}
+
+.modal-footer {
+  color: white;
+  background-color: #70bf4e;
+}
+
+.navbar-light .navbar-brand {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #f2ff3b;
+}
+
 .store_hours{
-  max-width: 350px;
-  margin: 15px 45px 15px 45px;
+  color: white;
+  max-width: 450px;
   padding-top: 12px;
-  padding-bottom: 14px; 
+  padding-bottom: 14px;
+  margin: auto;
   text-align: center;
-  border: #70bf4e solid;
+  font-weight: 400;
+  background-color: #70bf4e;
+  border-radius: 25px;
+}
+
+.store_hours h5 {
+  color: #f2ff3b;
+}
+
+.center_col {
+  display: inline-block;
+  text-align: center;
+}
+
+#map{
   border-radius: 25px;
 }

@@ -3,27 +3,54 @@
 
 {% block content %}
 
-<h2>Sign up</h2>
-<br/>
 <div class="row">
 
   <div class="col-md">
+    <h2>Sign up</h2>
+    <br/>
     <form method="post">
-      <div class="form-group">
         {% csrf_token %}
         <div class="form-control">
-          {{ form.as_p }}
+          <!-- {{ form.as_ul }} -->
+          <table>
+            <tr>
+              <td>Username:</td>
+              <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+              <td>E-mail:</td>
+              <td>{{ form.email }}</td>
+            </tr>
+            <tr>
+              <td>First Name:</td>
+              <td>{{ form.first_name }}</td>
+            </tr>
+            <tr>
+              <td>Last Name:</td>
+              <td>{{ form.last_name }}</td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td>{{ form.password }}</td>
+            </tr>
+            <tr>
+              <td>Password Confirm:</td>
+              <td>{{ form.password_confirm }}</td>
+            </tr>
+          </table>
         </div>
-      </div>
       <p class="error_message">{{ error }}</p>
       <button type="submit">Sign up</button>
     </form>
     <br/>
     <p>Already have an pull and hold account set up? <a href="{% url 'pullhold:login'%}">Log-in here</a>
+    <br/><br/>
   </div>
 
-  <div class="col-md">
-    <img src="{% static "pullhold/images/comicshelf.jpg" %}" alt="comics on shelf"/>
+  <div class="col-md center_col">
+    <img class="img-fluid" src="{% static "pullhold/images/comicshelf.jpg" %}" alt="comics on shelf"/>
+    <br/><br/>
   </div>
+</div>
 
 {% endblock %}

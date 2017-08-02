@@ -1,27 +1,40 @@
 {% extends 'pullhold/base.html' %}
-
+{% load staticfiles%}
 {% block content %}
 
 {% if request.user.is_superuser %}
-<h1>{{ greeting }}</h1>
-<br/><br/>
-<p><h3>Admin Panel</h3></p>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tr>
-    <td><a href="{% url 'pullhold:newcomicsearch' %}">Add New Comic Title</a></td>
-  <tr>
-  <tr>
-    <td><a href="/admin">View Admin Panel</a></td>
-  </tr>
-  <tr>
-    <td>View/Remove current comics in Pull &amp; Hold list <a href="{% url 'pullhold:holdlist' %}">HERE</a></td>
-  </tr>
-</table>
+
+<div class="row">
+  <div class="col-md">
+    <h1>{{ greeting }}</h1>
+    <br/><br/>
+    <p><h3>Admin Panel</h3></p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tr>
+        <td><a href="{% url 'pullhold:newcomicsearch' %}">Add New Comic Title</a></td>
+      <tr>
+      <tr>
+        <td><a href="/admin">View Admin Panel</a></td>
+      </tr>
+      <tr>
+        <td>View/Remove current comics in Pull &amp; Hold list <a href="{% url 'pullhold:holdlist' %}">HERE</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-md align-bottom center_col">
+    <div>
+      <img class="img-fluid" src="{% static "pullhold/images/subculturelogo.jpg" %}" alt="subculture logo"/>
+    </div>
+  </div>
+</div>
+
+
 
 {% else %}
 <h1>{{ greeting }}</h1>

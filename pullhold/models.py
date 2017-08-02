@@ -30,15 +30,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-#this links comictitles and readers together so they can easily be viewed in admin panel
-class ComicReaders(models.Model):
-    ComicTitle = models.ForeignKey(ComicTitle)
-    UserProfile = models.ForeignKey(UserProfile)
-
-    class Meta:
-        db_table = 'pullhold_comictitle_readers'
-        auto_created = User
-
     #methods to automatically create a UserProfile when a user login is created
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -48,3 +39,12 @@ class ComicReaders(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.userprofile.save()
+
+#this links comictitles and readers together so they can easily be viewed in admin panel
+class ComicReaders(models.Model):
+    ComicTitle = models.ForeignKey(ComicTitle)
+    UserProfile = models.ForeignKey(UserProfile)
+
+    class Meta:
+        db_table = 'pullhold_comictitle_readers'
+        auto_created = User.get_full_name

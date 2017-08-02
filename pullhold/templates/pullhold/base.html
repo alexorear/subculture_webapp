@@ -12,17 +12,19 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded active">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="{% url 'home' %}">SUBCULTURE</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="{% url 'pullhold:index' %}">Pull &amp; Hold</a>
-        <a class="nav-item nav-link" href="{% url 'pullhold:login'%}">Sign-In</a>
-        <a class="nav-item nav-link" href="{% url 'pullhold:register' %}">Register</a>
+        <!-- <a class="nav-item nav-link" href="{% url 'pullhold:login'%}">Sign-In</a> -->
+        <a class="nav-item nav-link" href="#loginmodal" data-toggle="modal">Login</a>
+        <!-- <a class="nav-item nav-link" href="{% url 'pullhold:register' %}">Register</a> -->
+        <a class="nav-item nav-link" href="#registermodal" data-toggle="modal">Register</a>
         <a class="nav-item nav-link" href="{% url 'pullhold:logout' %}">Log-Out</a>
       </div>
     </div>
@@ -30,19 +32,121 @@
 
   <div class="container">
 
+    <!--login Modal -->
+    <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">User Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form method="post" action="{% url 'pullhold:login'%}">
+                <center>
+                {% csrf_token %}
+                <div class="form-control">
+                  <table>
+                    <tr>
+                      <td><label>Username</label></td>
+                      <td><input type="text" name="username"></input></td>
+                    </tr>
+                    <tr>
+                      <td><label>Password</label></td>
+                      <td><input type="password" name="password"></input></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="error_message">
+                  {{ error }}
+                </div>
+                </center>
+                <br/>
+                <button type="submit">Sign In</button>
+
+            </form>
+            <br/>
+            <div>
+              <p>Not a registered user yet? <a href="{% url 'pullhold:register' %}">Sign up here</a></p>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--register Modal -->
+    <div class="modal fade" id="registermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New User Registration</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <center>
+            <form method="post" action="{% url 'pullhold:register' %}">
+                {% csrf_token %}
+                <div class="form-control">
+                  <!-- {{ form.as_ul }} -->
+                  <table>
+                    <tr>
+                      <td>Username:</td>
+                      <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                      <td>E-mail:</td>
+                      <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                      <td>First Name:</td>
+                      <td>{{ form.first_name }}</td>
+                    </tr>
+                    <tr>
+                      <td>Last Name:</td>
+                      <td>{{ form.last_name }}</td>
+                    </tr>
+                    <tr>
+                      <td>Password:</td>
+                      <td>{{ form.password }}</td>
+                    </tr>
+                    <tr>
+                      <td>Password Confirm:</td>
+                      <td>{{ form.password_confirm }}</td>
+                    </tr>
+                  </table>
+                </div>
+              <p class="error_message">{{ error }}</p>
+              <button type="submit">Sign up</button>
+            </form>
+            </center>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <br/>
     {% block content %}
     {% endblock %}
-
     <br/>
   </div>
 
-</body>
 <footer>
-<div>
+  <div>
     Copyright 2017 Subculture Comics. Sign design and programming by Alex Orear. Pull &amp; Hold
     web app made possible with the help of the <a href="https://comicvine.gamespot.com/api/">
     Comic Vine API</a>.
-</div>
+  </div>
 </footer>
+</body>
 </html>

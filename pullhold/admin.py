@@ -9,7 +9,8 @@ class ComicTitleAdmin(admin.ModelAdmin):
     list_display = ('comic_title','publisher','reservations')
     list_filter = ['publisher']
     search_fields = ['comic_title']
-    filter_horizontal = ['readers',]
+    filter_horizontal = ['readers']
+
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ['user']
