@@ -21,6 +21,7 @@ footer a, a:hover{
 .container {
   background-color: rgba(255,255,255,.75);
   min-height: 650px;
+  margin-top: 50px;
   border-left: solid black 1px;
   border-right: solid black 1px;
 }
@@ -47,8 +48,9 @@ footer a, a:hover{
   min-height: 300px;
   padding: auto;
   position:relative;
-  background-image: url("images/banner.jpg");
+  background-image: url("images/banner2.jpg");
   background-size: cover;
+  border-radius: 0px;
 }
 
 .comic_list{
