@@ -28,12 +28,21 @@ class PullHoldAddView(View):
 
         if request.user.is_authenticated:
             #filter is currently filtering publishers by publisher.id
-            marvel = ComicTitle.objects.filter(publisher__publisher_name="Marvel")
-            image = ComicTitle.objects.filter(publisher__publisher_name="Image")
-            dc_comics = ComicTitle.objects.filter(publisher__publisher_name="DC Comics")
+            current_available_comics = ComicTitle.objects.all()
+            marvel = []
+            dc_comics = []
+            other = []
+
+            for i in current_available_comics:
+                if(i.publisher.publisher_name == 'Marvel'):
+                    marvel.append(i)
+                elif(i.publisher.publisher_name == 'DC Comics'):
+                    dc_comics.append(i)
+                else:
+                    other.append(i)
 
             return render(request, 'pullhold/pulladd.html', {'marvel': marvel,
-            'image':image, 'dc_comics': dc_comics})
+            'other':other, 'dc_comics': dc_comics})
 
         else:
             return redirect('pullhold:login')
