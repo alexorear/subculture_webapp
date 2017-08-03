@@ -115,11 +115,18 @@ class AddNewComicTitleView(View):
     def post(self, request):
         new_title = request.POST['comic_title']
         current_titles = ComicTitle.objects.values_list('comic_title', flat = True)
+        new_title_publisher = request.POST['publisher']
+        current_publishers = Publisher.objects.values_list('publisher_name', flat = True)
+
 
         if(new_title not in current_titles):
 
-            new_comic = ComicTitle()
+            if(new_title_publisher not in current_publishers):
+                new_publisher = Publisher()
+                new_publisher.publisher_name = new_title_publisher
+                new_publisher.save()
 
+            new_comic = ComicTitle()
             new_comic.comic_title = request.POST['comic_title']
             new_comic.cover_art = request.POST['cover_art']
             new_comic.publisher = Publisher.objects.get(publisher_name = request.POST['publisher'])
