@@ -5,55 +5,71 @@
 <h2>Select Titles To Add to Pull &amp; Hold</h2>
 <br/><br/>
 
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Marvel</a></li>
+    <li><a href="#tabs-2">DC Comics</a></li>
+    <li><a href="#tabs-3">Other Publishers</a></li>
+  </ul>
+
 <form method="post">
   {% csrf_token %}
 
   <div class="container">
 
-      <h3>Marvel</h3>
-      <div class="row">
-      {% for comic in marvel|dictsort:"comic_title" %}
-      <div class="col-md comic_list text-center">
-        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
-        <p>
-          <input type="checkbox" name="comic" value="{{ comic.id }}">
-          <b>{{ comic.comic_title }}</b>
-        </p>
-      </div>
-      {% endfor %}
-      </div>
-      <input type="submit" value="Add titles"/>
-      <br/><br/><br/>
+<div id="tabs-1">
+<h3>Marvel</h3>
+<div class="row">
+{% for comic in marvel|dictsort:"comic_title" %}
+<div class="col-md comic_list text-center">
+  <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
+  <p>
+    <input type="checkbox" name="comic" value="{{ comic.id }}">
+    <b>{{ comic.comic_title }}</b>
+  </p>
+</div>
+{% endfor %}
+</div>
+<input type="submit" value="Add titles"/>
+</div>
 
-      <h3>DC Comics</h3>
-      <div class="row">
-      {% for comic in dc_comics|dictsort:"comic_title" %}
-      <div class="col-md comic_list text-center">
-        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
-        <input type="checkbox" name="comic" value="{{ comic.id }}">
-        <b>{{ comic.comic_title }}</b>
-        <br/>
-      </div>
-      {% endfor %}
-      </div>
-      <input type="submit" value="Add titles"/>
-      <br/><br/><br/>
+<div id="tabs-2">
+<h3>DC Comics</h3>
+<div class="row">
+{% for comic in dc_comics|dictsort:"comic_title" %}
+<div class="col-md comic_list text-center">
+  <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
+  <input type="checkbox" name="comic" value="{{ comic.id }}">
+  <b>{{ comic.comic_title }}</b>
+  <br/>
+</div>
+{% endfor %}
+</div>
+<input type="submit" value="Add titles"/>
+</div>
 
-      <h3>Other Publishers</h3>
-      <div class="row">
-      {% for comic in other|dictsort:"comic_title" %}
-      <div class="col-md comic_list text-center">
-        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
-        <input type="checkbox" name="comic" value="{{ comic.id }}">
-        <b>{{ comic.comic_title }}</b>
-        <br/>
-      </div>
-      {% endfor %}
-      </div>
-      <input type="submit" value="Add titles"/>
-      <br/><br/><br/>
+<div  id="tabs-3">
+<h3>Other Publishers</h3>
+<div class="row">
+{% for comic in other|dictsort:"comic_title" %}
+<div class="col-md comic_list text-center">
+  <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
+  <input type="checkbox" name="comic" value="{{ comic.id }}">
+  <b>{{ comic.comic_title }}</b>
+  <br/>
+</div>
+{% endfor %}
+</div>
+<input type="submit" value="Add titles"/>
+</div>
 
 </div>
 </form>
 <br/>
+
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+</script>
 {% endblock %}
