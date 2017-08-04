@@ -12,59 +12,64 @@
     <li><a href="#other">Other Publishers</a></li>
   </ul>
 
-<form method="post">
-  {% csrf_token %}
-
-  <div class="container">
-
 <div id="marvel">
-<h3>Marvel</h3>
+  <h3>Marvel</h3>
 <div class="row">
 {% for comic in marvel|dictsort:"comic_title" %}
 <div class="col-md comic_list text-center">
   <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
   <p>
-    <input type="checkbox" name="comic" value="{{ comic.id }}">
     <b>{{ comic.comic_title }}</b>
   </p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="comic" value="{{ comic.id }}">
+    <input type="submit" value="Add Title"/>
+  </form>
 </div>
 {% endfor %}
 </div>
-<input type="submit" value="Add titles"/>
 </div>
 
 <div id="dc_comics">
-<h3>DC Comics</h3>
+  <h3>DC Comics</h3>
 <div class="row">
 {% for comic in dc_comics|dictsort:"comic_title" %}
 <div class="col-md comic_list text-center">
   <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
-  <input type="checkbox" name="comic" value="{{ comic.id }}">
-  <b>{{ comic.comic_title }}</b>
-  <br/>
+  <p>
+    <b>{{ comic.comic_title }}</b>
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="comic" value="{{ comic.id }}">
+    <input type="submit" value="Add Title"/>
+  </form>
 </div>
 {% endfor %}
 </div>
-<input type="submit" value="Add titles"/>
 </div>
 
 <div  id="other">
-<h3>Other Publishers</h3>
+  <h3>Other Publishers</h3>
 <div class="row">
 {% for comic in other|dictsort:"comic_title" %}
 <div class="col-md comic_list text-center">
   <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
-  <input type="checkbox" name="comic" value="{{ comic.id }}">
-  <b>{{ comic.comic_title }}</b>
-  <br/>
+  <p>
+    <b>{{ comic.comic_title }}</b>
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="comic" value="{{ comic.id }}">
+    <input type="submit" value="Add Title"/>
+  </form>
 </div>
 {% endfor %}
 </div>
-<input type="submit" value="Add titles"/>
+</div>
 </div>
 
-</div>
-</form>
 <br/>
 
 <script>
