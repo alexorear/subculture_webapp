@@ -7,9 +7,9 @@
 
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Marvel</a></li>
-    <li><a href="#tabs-2">DC Comics</a></li>
-    <li><a href="#tabs-3">Other Publishers</a></li>
+    <li><a href="#marvel">Marvel</a></li>
+    <li><a href="#dc_comics">DC Comics</a></li>
+    <li><a href="#other">Other Publishers</a></li>
   </ul>
 
 <form method="post">
@@ -17,7 +17,7 @@
 
   <div class="container">
 
-<div id="tabs-1">
+<div id="marvel">
 <h3>Marvel</h3>
 <div class="row">
 {% for comic in marvel|dictsort:"comic_title" %}
@@ -33,7 +33,7 @@
 <input type="submit" value="Add titles"/>
 </div>
 
-<div id="tabs-2">
+<div id="dc_comics">
 <h3>DC Comics</h3>
 <div class="row">
 {% for comic in dc_comics|dictsort:"comic_title" %}
@@ -48,7 +48,7 @@
 <input type="submit" value="Add titles"/>
 </div>
 
-<div  id="tabs-3">
+<div  id="other">
 <h3>Other Publishers</h3>
 <div class="row">
 {% for comic in other|dictsort:"comic_title" %}
