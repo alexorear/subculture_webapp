@@ -1,5 +1,5 @@
 {% extends 'pullhold/base.html' %}
-
+{% load staticfiles %}
 {% block content %}
 
 <h2>Current Pull &amp; Hold</h2>
@@ -9,7 +9,7 @@
 <form method="post">
   {% csrf_token %}
 
-<table class="table table-responsive">
+<table id="comic_titles" class="table table-responsive">
   <thead>
     <tr>
       <th>Cover</th>
@@ -30,6 +30,13 @@
 
 <input type="submit" value="Remove Titles"/>
 </form>
+
 <br/><br/>
+
+<script type = "text/javascript" language = "javascript">
+$(document).ready( function () {
+    $('.table-responsive').DataTable();
+} );
+</script>
 
 {% endblock %}
