@@ -14,7 +14,7 @@
       <div class="row">
       {% for comic in marvel|dictsort:"comic_title" %}
       <div class="col-md comic_list text-center">
-        <img class="img-fluid" src="{{ comic.cover_art }}" height="204" width="137"/><br/>
+        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
         <p>
           <input type="checkbox" name="comic" value="{{ comic.id }}">
           <b>{{ comic.comic_title }}</b>
@@ -29,7 +29,7 @@
       <div class="row">
       {% for comic in dc_comics|dictsort:"comic_title" %}
       <div class="col-md comic_list text-center">
-        <img class="img-fluid" src="{{ comic.cover_art }}" height="204" width="137"/><br/>
+        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
         <input type="checkbox" name="comic" value="{{ comic.id }}">
         <b>{{ comic.comic_title }}</b>
         <br/>
@@ -41,9 +41,9 @@
 
       <h3>Other Publishers</h3>
       <div class="row">
-      {% for comic in image|dictsort:"comic_title" %}
+      {% for comic in other|dictsort:"comic_title" %}
       <div class="col-md comic_list text-center">
-        <img class="img-fluid" src="{{ comic.cover_art }}" height="204" width="137"/><br/>
+        <img src="{{ comic.cover_art }}" height="204" width="137"/><br/>
         <input type="checkbox" name="comic" value="{{ comic.id }}">
         <b>{{ comic.comic_title }}</b>
         <br/>
