@@ -1,3 +1,7 @@
+label{
+    vertical-align: text-top;
+}
+
 body {
   background-image: url("images/cb-background.jpg");
   background-repeat: no-repeat;
@@ -126,7 +130,6 @@ footer a, a:hover{
   font-weight: 400;
   background-color: #70bf4e;
   border-radius: 8px;
-  box-shadow: 2px 2px 5px #777777;
 }
 
 .store_hours h5 {
@@ -139,7 +142,7 @@ footer a, a:hover{
 }
 
 #map{
-  width: 100%;
+  max-width: 450px;
   border-radius: 8px;
   box-shadow: 2px 2px 5px #777777;
 }
