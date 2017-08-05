@@ -26,8 +26,10 @@ SECRET_KEY = '23)o$)ei$+j9by+6fmke9^=h33^+(0xve_7!dyy55+t4xc&7z-'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+# myhouse wifi
 '192.168.1.205',
-'192.168.1.76',
+# subculture shop wifi
+'192.168.0.106',
 '127.0.0.1'
 ]
 
