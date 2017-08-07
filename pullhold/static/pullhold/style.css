@@ -142,7 +142,7 @@ footer a, a:hover{
 }
 
 #map{
-  max-width: 450px;
+  max-width: 100%;
   border-radius: 8px;
   box-shadow: 2px 2px 5px #777777;
 }
