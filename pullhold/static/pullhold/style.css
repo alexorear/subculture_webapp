@@ -18,7 +18,11 @@ footer{
   bottom: 0px;
 }
 
-footer a, a:hover{
+footer a{
+  color: white;
+}
+
+footer a:hover{
   color: white;
 }
 

@@ -42,85 +42,84 @@
   </nav>
 
   <div class="container container-main">
-
-    <!--login Modal -->
-    <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">User Login</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="post" action="{% url 'pullhold:login'%}">
-              <center>
-              {% csrf_token %}
-              <div class="form-control">
-                <table>
-                  <tr>
-                    <td><label>Username</label></td>
-                    <td><input type="text" name="username"></input></td>
-                  </tr>
-                  <tr>
-                    <td><label>Password</label></td>
-                    <td><input type="password" name="password"></input></td>
-                  </tr>
-                </table>
-              </div>
-              <div class="error_message">
-                {{ error }}
-              </div>
-              </center>
-              <br/>
-              <button type="submit">Sign In</button>
-            </form>
-            <br/>
-            <div>
-              <p>Not a registered user yet? <a class="nav-item nav-link" href="#registermodal" data-toggle="modal">Sign up here</a></p>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-<!--register Modal -->
-<div class="modal fade" id="registermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New User Registration</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="{% url 'pullhold:register' %}">
-          {% csrf_token %}
-          <table>
-            {{ form }}
-          </table>
-          <p class="error_message">{{ error }}</p>
-          <button type="submit">Sign up</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
     <br/>
     {% block content %}
     {% endblock %}
     <br/>
   </div>
+
+  <!--login Modal -->
+  <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">User Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{% url 'pullhold:login'%}">
+            <center>
+            {% csrf_token %}
+            <div class="form-control">
+              <table>
+                <tr>
+                  <td><label>Username</label></td>
+                  <td><input type="text" name="username"></input></td>
+                </tr>
+                <tr>
+                  <td><label>Password</label></td>
+                  <td><input type="password" name="password"></input></td>
+                </tr>
+              </table>
+            </div>
+            <div class="error_message">
+              {{ error }}
+            </div>
+            </center>
+            <br/>
+            <button type="submit">Sign In</button>
+          </form>
+          <br/>
+          <div>
+            <p>Not a registered user yet? <a class="nav-item nav-link" href="#registermodal" data-toggle="modal">Sign up here</a></p>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--register Modal -->
+<div class="modal fade" id="registermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">New User Registration</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form method="post" action="{% url 'pullhold:register' %}">
+        {% csrf_token %}
+        <table>
+          {{ form }}
+        </table>
+        <p class="error_message">{{ error }}</p>
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
 
 <footer>
   <div>
