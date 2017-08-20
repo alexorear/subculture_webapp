@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from .models import ComicTitle, Publisher, UserProfile
 from .forms import UserForm, ComicTitleForm
+from django.core.mail import send_mail
 from .comicvine import comicvine
 
 # Create your views here.
@@ -189,9 +190,13 @@ class UserFormView(View):
             #returns User objects if credentials are correct
             user = authenticate(username = username, password = password)
 
+            #emails user confirmation of new account
+            send_mail('Welcome to SUBCULTURE Comics', 'this is a test!!!', 'noreply@subculture.co', ['alex.orear@gmail.com'])
+
+
             if user is not None:
                 if user.is_active:
                     login(request, user)
                     return redirect('pullhold:index')
 
-        return render(request, self.template_name, {'form': form , 'error': "Passwords DO NOT match!"})
+        return render(request, self.template_name, {'form': form , 'error': ""})

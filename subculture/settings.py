@@ -1,3 +1,5 @@
+from .email import email
+
 """
 Django settings for subculture project.
 
@@ -33,6 +35,12 @@ ALLOWED_HOSTS = [
 '127.0.0.1'
 ]
 
+#Email notification setup
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'alex.orear'
+EMAIL_HOST_PASSWORD = email()
+EMAIL_USE_TLS = True
 
 # Application definition
 
