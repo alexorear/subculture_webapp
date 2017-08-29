@@ -4,6 +4,7 @@ label{
 
 body {
   background-image: url("images/cb-background.jpg");
+  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -42,7 +43,7 @@ footer a:hover{
 
 .lead{
   color: white;
-    font-size: 28px;
+  font-size: 28px;
   font-weight: bold;
   text-align: right;
   margin-right: 0px!important;
@@ -51,8 +52,8 @@ footer a:hover{
   /*text-shadow: 2px 2px 5px black;*/
   margin-right: 15px;
   position:absolute;
-      bottom: 5px;
-      right:0;
+  bottom: 5px;
+  right:0;
 }
 
 @media (max-width: 700px) {
@@ -110,6 +111,17 @@ footer a:hover{
 
 .navbar {
   border-bottom: solid white;
+}
+
+.navbar-brand {
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover,
+.navbar-light .navbar-toggler:focus, .navbar-light .navbar-toggler:hover {
+     color:  #f2ff3b;
 }
 
 .navbar-light .navbar-brand {
